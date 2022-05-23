@@ -1,9 +1,19 @@
 pipeline{
     agent any
     stages{
-        stage ('Just test'){
+        stage ('Build Backend'){
             steps{
-                sh 'echo deu certo'
+                sh './mvnw clean package'
+            }
+        }
+        stage('Build Container'){
+            steps{
+                sh 'docker build -t gmoraesgarcia/teste-jenkins .'
+            }
+        }
+        stage('Push dockerHub'){
+            steps{
+                sh 'docker push gmoraesgarcia/teste-jenkins'
             }
         }
     }
