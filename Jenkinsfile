@@ -26,7 +26,7 @@ pipeline{
             steps{
                 sleep(5) 
                 timeout(time: 1, unit: 'MINUTES'){
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar_token'
+                    waitForQualityGate abortPipeline: true, credentialsId: 'Sonar_token'
                 }
                 
             }
