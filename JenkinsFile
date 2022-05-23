@@ -11,6 +11,17 @@ pipeline{
                 sh './mvnw test'
             }
         }
+          stage ('Sonar Analysis'){
+              environment {
+                  scannerHome = tool 'SONAR_SCANNER'
+              }
+            steps{
+                withSonarQubeEnv('SONAR_LOCAL'){
+                     sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBack -Dsonar.host.url=http://10.40.50.205:9000  -Dsonar.login=4db67ac5048bf368b5088582cc8defeddfff8baf -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"
+
+                }
+            }
+        }
         stage('Build Container'){
             steps{
                 sh 'docker build -t gmoraesgarcia/teste-jenkins .'
@@ -23,3 +34,4 @@ pipeline{
         }
     }
 }
+
