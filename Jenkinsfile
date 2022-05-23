@@ -22,7 +22,7 @@ pipeline{
                 }
             }
         }
-        stage('Quality Gate'){
+        /*stage('Quality Gate'){
             steps{
                 sleep(5) 
                 //timeout(time: 1, unit: 'MINUTES'){
@@ -30,7 +30,7 @@ pipeline{
                 //}
                 
             }
-        }
+        }*/
         stage('Build Container'){
             steps{
                 sh 'docker build -t gmoraesgarcia/teste-jenkins .'
