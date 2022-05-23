@@ -44,9 +44,9 @@ pipeline{
 
         stage('conect ssh and pull'){
             steps{
-                sshagent(credentials: ['openstack-instance']){
-                    sh 'ssh  ubuntu@10.40.50.205'
+                sshagent(['openstack-instance']) {
                     sh 'docker pull gmoraesgarcia/teste-jenkins'
+                    // some block
                 }
             }
         }
