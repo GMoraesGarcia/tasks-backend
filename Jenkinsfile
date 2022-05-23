@@ -41,5 +41,13 @@ pipeline{
                 sh 'docker push gmoraesgarcia/teste-jenkins'
             }
         }
+
+        stage('conect ssh and pull'){
+            steps{
+                sshagent(credentials: ['openstack-instance']){
+                    sh 'docker pull gmoraesgarcia/teste-jenkins'
+                }
+            }
+        }
     }
 }
