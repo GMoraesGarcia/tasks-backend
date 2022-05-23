@@ -22,6 +22,14 @@ pipeline{
                 }
             }
         }
+        stage('Quality gate'){
+            steps{
+                timeout(time: 1, unit: 'MINUTES'){
+                    waitForQualityGate abortPipeline: true
+                }
+                
+            }
+        }
         stage('Build Container'){
             steps{
                 sh 'docker build -t gmoraesgarcia/teste-jenkins .'
