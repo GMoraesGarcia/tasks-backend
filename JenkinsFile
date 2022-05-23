@@ -3,7 +3,12 @@ pipeline{
     stages{
         stage ('Build Backend'){
             steps{
-                sh './mvnw clean package'
+                sh './mvnw clean package -DskipTests=true'
+            }
+        }
+          stage ('Unit Tests'){
+            steps{
+                sh './mvnw test'
             }
         }
         stage('Build Container'){
