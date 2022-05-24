@@ -33,19 +33,19 @@ pipeline{
         }*/
         stage('Build Container'){
             steps{
-                sh 'docker build -t gmoraesgarcia/teste-jenkins .'
+                sh 'sudo docker build -t gmoraesgarcia/teste-jenkins .'
             }
         }
         stage('Push dockerHub'){
             steps{
-                sh 'docker push gmoraesgarcia/teste-jenkins'
+                sh 'sudo docker push gmoraesgarcia/teste-jenkins'
             }
         }
 
         stage('conect ssh and pull'){
             steps{
                node('Node-01') {
-                    sh 'docker pull gmoraesgarcia/teste-jenkins'
+                    sh 'sudo docker pull gmoraesgarcia/teste-jenkins'
                     // some block
                 }
             }
