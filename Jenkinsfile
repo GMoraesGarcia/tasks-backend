@@ -44,7 +44,7 @@ pipeline{
 
         stage('conect ssh and pull'){
             steps{
-                sshagent(['openstack-instance']) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'openstack-instance', keyFileVariable: '')]) {
                     sh 'docker pull gmoraesgarcia/teste-jenkins'
                     // some block
                 }
