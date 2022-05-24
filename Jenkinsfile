@@ -36,6 +36,7 @@ pipeline{
                 sh 'sudo docker build -t gmoraesgarcia/teste-jenkins .'
             }
         }
+       
         stage('Push dockerHub'){
             steps{
                 sh 'sudo docker push gmoraesgarcia/teste-jenkins'
