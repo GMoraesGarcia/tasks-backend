@@ -42,13 +42,15 @@ pipeline{
             }
         }
 
-        stage('conect ssh and pull'){
+        node('Node-01'){
+            stage('conect ssh and pull'){
             steps{
                 sshagent(credentials: ['openstack-instance']) {
-                   sshCommand('docker -h run -d -p 80:80 gmoraesgarcia/teste-jenkins')
+                    sh 'docker pull gmoraesgarcia/teste-jenkins'
                     // some block
                 }
             }
+        }
         }
     }
 }
