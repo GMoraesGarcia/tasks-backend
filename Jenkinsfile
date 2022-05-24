@@ -45,7 +45,7 @@ pipeline{
         stage('conect ssh and pull'){
             steps{
                 sshagent(credentials: ['openstack-instance']) {
-                    sh 'docker -h run -d -p 80:80 gmoraesgarcia/teste-jenkins'
+                   sshCommand('docker -h run -d -p 80:80 gmoraesgarcia/teste-jenkins')
                     // some block
                 }
             }
