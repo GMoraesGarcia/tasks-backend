@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent {node: 'Node-01'}
     stages{
         stage ('Build Backend'){
             steps{
@@ -45,10 +45,10 @@ pipeline{
 
         stage('conect ssh and pull'){
             steps{
-               node('Node-01') {
+              // node('Node-01') {
                     sh 'sudo docker pull gmoraesgarcia/teste-jenkins'
                     // some block
-                }
+               // }
             }
         }
     }
